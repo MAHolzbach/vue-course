@@ -8,19 +8,44 @@
     <script src="vue.js"></script>
   </head>
   <body>
-    <div id="app">
+    <!-- <div id="app">
       <input type="text" v-on:input="changeTitle" />
       <p>{{ title }}</p>
+    </div> -->
+    <div id="exercise">
+      <!-- 1) Fill the <p> below with your Name and Age - using Interpolation -->
+      <p>VueJS is pretty cool - {{ name }} {{ age }}</p>
+      <!-- 2) Output your age, multiplied by 3 -->
+      <p>{{ tripsAge() }}</p>
+      <!-- 3) Call a function to output a random float between 0 and 1 (Math.random()) -->
+      <p>{{ numRando() }}</p>
+      <!-- 4) Search any image on Google and output it here by binding the "src" attribute -->
+      <div>
+        <img style="width:100px;height:100px" v-bind:src="vueImgSrc" />
+      </div>
+      <!-- 5) Pre-Populate this input with your name (set the "value" attribute) -->
+      <div>
+        <input :value="name" type="text" />
+      </div>
     </div>
     <script>
       new Vue({
-        el: "#app",
+        el: "#exercise",
         data: {
-          title: "Hello Vue!"
+          name: "Mike",
+          age: 39,
+          vueImgSrc:
+            "https://miro.medium.com/max/1051/1*vFC8tDUGLlXIiqT7ymf3xg.png"
         },
         methods: {
           changeTitle: function(e) {
             this.title = e.target.value;
+          },
+          tripsAge: function() {
+            return this.age * 3;
+          },
+          numRando: function() {
+            return Math.random();
           }
         }
       });
