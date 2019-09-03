@@ -27,6 +27,13 @@ new Vue({
       const monsterAttack = Math.floor(Math.random() * 10) + 1;
 
       this.playerHealth = this.playerHealth - monsterAttack;
-    }
+    },
+    heal() {
+      const healResult = Math.floor(Math.random() * 10) + 1;
+
+      this.playerHealth = this.playerHealth + healResult;
+      this.monsterAttack();
+    },
+    giveUp() {}
   }
 });
