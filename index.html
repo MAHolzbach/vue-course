@@ -6,14 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Vue Course</title>
     <script src="vue.js"></script>
-    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="css/foundation.min.css" />
+    <link rel="stylesheet" href="monsterSlayer.css" />
+    <!-- <link rel="stylesheet" href="index.css" /> -->
   </head>
   <body>
     <!-- <div id="app">
       <input type="text" v-on:input="changeTitle" />
       <p>{{ title }}</p>
     </div> -->
-    <!-- <div id="exercise"> -->
+    <!-- <div id="exercise1"> -->
     <!-- 1) Fill the <p> below with your Name and Age - using Interpolation -->
     <!-- <p>VueJS is pretty cool - {{ name }} {{ age }}</p> -->
     <!-- 2) Output your age, multiplied by 3 -->
@@ -87,7 +89,7 @@
       <input type="text" v-model="colorAndWidth.color" />
       <input type="text" v-model="colorAndWidth.width" />
     </div> -->
-    <!-- <div id="exercise"> -->
+    <!-- <div id="exercise4"> -->
     <!-- 1) Start the Effect with the Button. The Effect should alternate the "highlight" or "shrink" class on each new setInterval tick (attach respective class to the div with id "effect" below) -->
     <!-- <div>
         <button @click="startEffect">Start Effect</button>
@@ -154,25 +156,25 @@
         </template>
       </ul>
     </div> -->
-    <div id="exercise5">
-      <!-- 1) Hook up the button to toggle the display of the two paragraphs. Use both v-if and v-show and inspect the elements to see the difference -->
-      <div>
+    <!-- <div id="exercise5"> -->
+    <!-- 1) Hook up the button to toggle the display of the two paragraphs. Use both v-if and v-show and inspect the elements to see the difference -->
+    <!-- <div>
         <button @click="show = !show">Toggle</button>
         <p v-if="show">You either see me ...</p>
         <p v-if="!show">...or me</p>
         <p v-show="show">You either see me ...</p>
         <p v-if="!show">...or me</p>
-      </div>
-      <!-- 2) Output an <ul> of array elements of your choice. Also print the index of each element. -->
-      <ul>
+      </div> -->
+    <!-- 2) Output an <ul> of array elements of your choice. Also print the index of each element. -->
+    <!-- <ul>
         <li v-for="(n, i) in 5">{{ n }}:{{ i }}</li>
-      </ul>
-      <!-- 3) Print all key-value pairs of the following object: {title: 'Lord of the Rings', author: 'J.R.R. Tolkiens', books: '3'}. Also print the index of each item. -->
-      <ul>
+      </ul> -->
+    <!-- 3) Print all key-value pairs of the following object: {title: 'Lord of the Rings', author: 'J.R.R. Tolkiens', books: '3'}. Also print the index of each item. -->
+    <!-- <ul>
         <li v-for="(value, key) in myObject">{{ key }}: {{ value }}</li>
-      </ul>
-      <!-- 4) Print the following object (only the values) and also create a nested loop for the array: {name: 'TESTOBJECT', data: [1.67, 1.33, 0.98, 2.21]} (hint: use v-for and v-if to achieve this) -->
-      <ul>
+      </ul> -->
+    <!-- 4) Print the following object (only the values) and also create a nested loop for the array: {name: 'TESTOBJECT', data: [1.67, 1.33, 0.98, 2.21]} (hint: use v-for and v-if to achieve this) -->
+    <!-- <ul>
         <li v-for="value in testData">
           <template v-if="Array.isArray(value)">
             <div v-for="element in value">{‌{ element }}</div>
@@ -181,134 +183,185 @@
             {‌{ value }}
           </template>
         </li>
-      </ul>
+      </ul> -->
+    <!-- </div> -->
+    <div id="monsterSlayer">
+      <section class="row">
+        <div class="small-6 columns">
+          <h1 class="text-center">YOU</h1>
+          <div class="healthbar">
+            <div
+              class="healthbar text-center"
+              style="background-color: green; margin: 0; color: white;"
+              :style="{width: playerHealth + '%'}"
+            >
+              {{ playerHealth }}
+            </div>
+          </div>
+        </div>
+        <div class="small-6 columns">
+          <h1 class="text-center">MONSTER</h1>
+          <div class="healthbar">
+            <div
+              class="healthbar text-center"
+              style="background-color: green; margin: 0; color: white;"
+              :style="{width: monsterHealth + '%'}"
+            >
+              {{ monsterHealth }}
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="row controls" v-if="!gameIsRunning">
+        <div class="small-12 columns">
+          <button id="start-game" @click="startNewGame">START NEW GAME</button>
+        </div>
+      </section>
+      <section class="row controls" v-else>
+        <div class="small-12 columns">
+          <button id="attack" @click="normalPlayerAttack">ATTACK</button>
+          <button id="special-attack" @click="specialPlayerAttack">
+            SPECIAL ATTACK
+          </button>
+          <button id="heal">HEAL</button>
+          <button id="give-up">GIVE UP</button>
+        </div>
+      </section>
+      <section class="row log">
+        <div class="small-12 columns">
+          <ul>
+            <li></li>
+          </ul>
+        </div>
+      </section>
+      <script src="monsterSlayer.js"></script>
     </div>
 
     <script>
-      new Vue({
-        el: "#exercise5",
-        data: {
-          // name: "Mike",
-          // age: 39,
-          // vueImgSrc:
-          //   "https://miro.medium.com/max/1051/1*vFC8tDUGLlXIiqT7ymf3xg.png",
-          // counter: 0,
-          // target: null,
-          // keyValue: "",
-          // link: "https://www.google.com",
-          // secondCounter: 0,
-          // ex3Value: 0,
-          // attachRed: false,
-          // color: "green",
-          // effectClasses: {
-          //   highlight: false,
-          //   shrink: true
-          // },
-          // float: "float",
-          // userClass: "",
-          // isVisible: true,
-          // myStyle: {
-          //   width: "100px",
-          //   height: "150px",
-          //   backgroundColor: "gray"
-          // },
-          // progressBar: {
-          //   width: "0px",
-          //   backgroundColor: "red"
-          // }
-          // show: true
-          // ingredients: ["meat", "fruit", "cookies"],
-          // persons: [
-          //   { name: "Max", age: 27, color: "red" },
-          //   { name: "Anna", age: "unknown", color: "blue" }
-          // ],
-          show: true,
-          array: ["Max", "Anna", "Chris", "Manu"],
-          myObject: {
-            title: "Lord of the Rings",
-            author: "J.R.R. Tolkiens",
-            books: "3"
-          },
-          testData: {
-            name: "TESTOBJECT",
-            id: 10,
-            data: [1.67, 1.33, 0.98, 2.21]
-          }
-        },
-        computed: {
-          // output() {
-          //   return this.counter > 5 ? "Greater than 5" : "Less than 5";
-          // },
-          // result() {
-          //   return this.ex3Value === 37 ? "Done" : "Not there yet";
-          // },
-          // divClasses() {
-          //   return {
-          //     red: this.attachRed,
-          //     blue: !this.attachRed
-          //   };
-          // },
-          // myStyles() {
-          //   return {
-          //     backgroundColor: this.colorAndWidth.color,
-          //     width: this.colorAndWidth.width + "px"
-          //   };
-          // }
-        },
-        watch: {
-          // counter: function(value) {
-          //   var me = this;
-          //   setTimeout(function() {
-          //     me.counter = 0;
-          //   }, 2000);
-          // },
-          // result: function(value) {
-          //   var me = this;
-          //   setTimeout(() => {
-          //     me.ex3Value = 0;
-          //   }, 5000);
-          // }
-        },
-        methods: {
-          // changeTitle: function(e) {
-          //   this.title = e.target.value;
-          // },
-          // tripsAge: function() {
-          //   return this.age * 3;
-          // },
-          // numRando: function() {
-          //   return Math.random();
-          // },
-          // increase: function(num, e) {
-          //   this.counter += num;
-          //   this.target = e.target;
-          // },
-          // showAlert: function() {
-          //   alert("Clicked!");
-          // },
-          // updateValue(e) {
-          //   this.keyValue = e.target.value;
-          // },
-          // result() {
-          //   return this.counter > 5 ? "Greater than 5" : "Less than 5";
-          // },
-          // startEffect: function() {
-          //   var vm = this;
-          //   setInterval(function() {
-          //     vm.effectClasses.highlight = !vm.effectClasses.highlight;
-          //     vm.effectClasses.shrink = !vm.effectClasses.shrink;
-          //   }, 1000);
-          // },
-          // startProgress: function() {
-          //   var vm = this;
-          //   var width = 0;
-          //   setInterval(function() {
-          //     width = width + 10;
-          //     vm.progressBar.width = width + "px";
-          //   }, 500);
-          // }
-        }
-      });
+      // new Vue({
+      //   el: "#firstProject",
+      //   data: {
+      // name: "Mike",
+      // age: 39,
+      // vueImgSrc:
+      //   "https://miro.medium.com/max/1051/1*vFC8tDUGLlXIiqT7ymf3xg.png",
+      // counter: 0,
+      // target: null,
+      // keyValue: "",
+      // link: "https://www.google.com",
+      // secondCounter: 0,
+      // ex3Value: 0,
+      // attachRed: false,
+      // color: "green",
+      // effectClasses: {
+      //   highlight: false,
+      //   shrink: true
+      // },
+      // float: "float",
+      // userClass: "",
+      // isVisible: true,
+      // myStyle: {
+      //   width: "100px",
+      //   height: "150px",
+      //   backgroundColor: "gray"
+      // },
+      // progressBar: {
+      //   width: "0px",
+      //   backgroundColor: "red"
+      // }
+      // show: true
+      // ingredients: ["meat", "fruit", "cookies"],
+      // persons: [
+      //   { name: "Max", age: 27, color: "red" },
+      //   { name: "Anna", age: "unknown", color: "blue" }
+      // ],
+      // show: true,
+      // array: ["Max", "Anna", "Chris", "Manu"],
+      // myObject: {
+      //   title: "Lord of the Rings",
+      //   author: "J.R.R. Tolkiens",
+      //   books: "3"
+      // },
+      // testData: {
+      //   name: "TESTOBJECT",
+      //   id: 10,
+      //   data: [1.67, 1.33, 0.98, 2.21]
+      // }
+      // },
+      // computed: {
+      // output() {
+      //   return this.counter > 5 ? "Greater than 5" : "Less than 5";
+      // },
+      // result() {
+      //   return this.ex3Value === 37 ? "Done" : "Not there yet";
+      // },
+      // divClasses() {
+      //   return {
+      //     red: this.attachRed,
+      //     blue: !this.attachRed
+      //   };
+      // },
+      // myStyles() {
+      //   return {
+      //     backgroundColor: this.colorAndWidth.color,
+      //     width: this.colorAndWidth.width + "px"
+      //   };
+      // }
+      // },
+      // watch: {
+      // counter: function(value) {
+      //   var me = this;
+      //   setTimeout(function() {
+      //     me.counter = 0;
+      //   }, 2000);
+      // },
+      // result: function(value) {
+      //   var me = this;
+      //   setTimeout(() => {
+      //     me.ex3Value = 0;
+      //   }, 5000);
+      // }
+      // },
+      // methods: {
+      // changeTitle: function(e) {
+      //   this.title = e.target.value;
+      // },
+      // tripsAge: function() {
+      //   return this.age * 3;
+      // },
+      // numRando: function() {
+      //   return Math.random();
+      // },
+      // increase: function(num, e) {
+      //   this.counter += num;
+      //   this.target = e.target;
+      // },
+      // showAlert: function() {
+      //   alert("Clicked!");
+      // },
+      // updateValue(e) {
+      //   this.keyValue = e.target.value;
+      // },
+      // result() {
+      //   return this.counter > 5 ? "Greater than 5" : "Less than 5";
+      // },
+      // startEffect: function() {
+      //   var vm = this;
+      //   setInterval(function() {
+      //     vm.effectClasses.highlight = !vm.effectClasses.highlight;
+      //     vm.effectClasses.shrink = !vm.effectClasses.shrink;
+      //   }, 1000);
+      // },
+      // startProgress: function() {
+      //   var vm = this;
+      //   var width = 0;
+      //   setInterval(function() {
+      //     width = width + 10;
+      //     vm.progressBar.width = width + "px";
+      //   }, 500);
+      // }
+      //   }
+      // });
     </script>
   </body>
 </html>
