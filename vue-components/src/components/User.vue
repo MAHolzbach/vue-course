@@ -3,6 +3,7 @@
     <h1>The User Component</h1>
     <p>I'm an awesome User!</p>
     <p>My name is {{name}}</p>
+    <p>Age: {{age}}</p>
     <button @click="changeName">Change My Name</button>
     <hr>
     <div class="row">
