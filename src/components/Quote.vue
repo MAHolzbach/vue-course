@@ -1,6 +1,15 @@
 <template>
   <div>
-    <slot></slot>
+    <div class="title">
+      <slot name="quoteTitle"></slot>
+      <span>
+        <slot name="subtitle">Subtitle</slot>
+      </span>
+    </div>
+    <hr>
+    <div>
+      <slot></slot>
+    </div>
   </div>
 </template>
 
@@ -15,5 +24,8 @@ div {
   padding: 30px;
   margin: 30px auto;
   text-align: center;
+}
+.title {
+  font-style: italic;
 }
 </style>

@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-xs-12">
         <app-quote>
-          <h2>{{quoteTitle}}</h2>
+          <h2 slot="quoteTitle">{{quoteTitle}}</h2>
           <p>Inspiring quote!</p>
         </app-quote>
       </div>
